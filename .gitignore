@@ -25,3 +25,9 @@ DerivedData/
 
 ## Gcc Patch
 /*.gcno
+
+
+*.png
+*.jpg
+*.jpeg
+*.svg
