@@ -14,7 +14,8 @@
 		3F2631112343635600689FE3 /* Syringe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F26310F2343635600689FE3 /* Syringe.xcdatamodeld */; };
 		3F2631132343635700689FE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F2631122343635700689FE3 /* Assets.xcassets */; };
 		3F2631162343635700689FE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2631142343635700689FE3 /* LaunchScreen.storyboard */; };
-		8128752F2348B0D500446B2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8128752E2348B0D500446B2D /* GoogleService-Info.plist */; };
+		3F50D2F72348BB5E006C027C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */; };
+		3F50D2F92348BF82006C027C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F50D2F82348BF82006C027C /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,9 @@
 		3F2631122343635700689FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F2631152343635700689FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F2631172343635700689FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3F50D2F82348BF82006C027C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		506FDE588A144E1767B0C5A8 /* Pods_Syringe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Syringe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8128752E2348B0D500446B2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEB0AF7B2457BE2A8789F2C4 /* Pods-Syringe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syringe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syringe/Pods-Syringe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,11 +70,12 @@
 				3F2631082343635600689FE3 /* AppDelegate.swift */,
 				3F26310A2343635600689FE3 /* ViewController.swift */,
 				3F26310C2343635600689FE3 /* Main.storyboard */,
+				3F50D2F82348BF82006C027C /* RegisterViewController.swift */,
 				3F2631122343635700689FE3 /* Assets.xcassets */,
 				3F2631142343635700689FE3 /* LaunchScreen.storyboard */,
 				3F2631172343635700689FE3 /* Info.plist */,
 				3F26310F2343635600689FE3 /* Syringe.xcdatamodeld */,
-				8128752E2348B0D500446B2D /* GoogleService-Info.plist */,
+				3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */,
 			);
 			path = Syringe;
 			sourceTree = "<group>";
@@ -155,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F2631162343635700689FE3 /* LaunchScreen.storyboard in Resources */,
-				8128752F2348B0D500446B2D /* GoogleService-Info.plist in Resources */,
+				3F50D2F72348BB5E006C027C /* GoogleService-Info.plist in Resources */,
 				3F2631132343635700689FE3 /* Assets.xcassets in Resources */,
 				3F26310E2343635600689FE3 /* Main.storyboard in Resources */,
 			);
@@ -224,6 +227,7 @@
 				3F26310B2343635600689FE3 /* ViewController.swift in Sources */,
 				3F2631092343635600689FE3 /* AppDelegate.swift in Sources */,
 				3F2631112343635600689FE3 /* Syringe.xcdatamodeld in Sources */,
+				3F50D2F92348BF82006C027C /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

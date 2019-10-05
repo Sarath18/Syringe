@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension UITextField {
     func setBorder() {
@@ -23,7 +24,7 @@ extension UITextField {
 class ViewController: UIViewController {
     @IBOutlet weak var usernameEditField: UITextField!
     @IBOutlet weak var passwordEditField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
