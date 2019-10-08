@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     return bloodGroupPickerData.count
     }
     
-    // The data to return fopr the row and component (column) that's being passed in
+    // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return bloodGroupPickerData[row]
     }
@@ -37,15 +37,36 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var bloodGroupPickerData: [String] = [String]()
     
+    func updateUserDetails() {
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        guard let name = nameTextField.text else { return };
+        guard let email = emailTextField.text else { return };
+        let blood_group = bloodGroupPickerData[bloodGroupPicker.selectedRow(inComponent: 0)]
+        guard let mobile = mobileNumberTextField.text else { return };
+        guard let pass = passwordTextField.text else { return };
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dob = dateFormatter.string(from: datePicker.date);
+        
+        
+        
+        
+        
+        ref.child("users").child(name+pass).setValue(["email": email, "full_name": name, "date_of_birth": dob, "blood_group": blood_group, "mobile": mobile]);
+    }
+    
     @IBAction func registerButtonPressed(_ sender: Any) {
         if(confirmPasswordTextField.text == passwordTextField.text) {
-            print("here")
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) {
                 (userInfo, err) in
                 if err != nil {
                     print(err!)
+                    self.updateUserDetails();
                 } else {
                     print("Successful Registration!")
+                    self.updateUserDetails();
                 }
             }
         }
