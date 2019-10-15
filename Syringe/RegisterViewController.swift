@@ -37,6 +37,10 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var bloodGroupPickerData: [String] = [String]()
     
+    func goBackToLogin() {
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     func updateUserDetails() {
         var ref: DatabaseReference!
         ref = Database.database().reference()
@@ -44,31 +48,66 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         guard let email = emailTextField.text else { return };
         let blood_group = bloodGroupPickerData[bloodGroupPicker.selectedRow(inComponent: 0)]
         guard let mobile = mobileNumberTextField.text else { return };
-        guard let pass = passwordTextField.text else { return };
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dob = dateFormatter.string(from: datePicker.date);
         
+        let userID : String = (Auth.auth().currentUser?.uid)!
         
-        
-        
-        
-        ref.child("users").child(name+pass).setValue(["email": email, "full_name": name, "date_of_birth": dob, "blood_group": blood_group, "mobile": mobile]);
+        ref.child("users").child(userID).setValue(["email": email, "full_name": name, "date_of_birth": dob, "blood_group": blood_group, "mobile": mobile]);
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
+        let errorAlert = UIAlertController(title: "Error", message: "Account successfully created", preferredStyle: .alert)
+        let okErrorAction = UIAlertAction(title: "OK", style: .destructive, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+            @unknown default:
+                print("unknown")
+            }});
+        errorAlert.addAction(okErrorAction);
+        
+        let successAlert = UIAlertController(title: "Success", message: "Account successfully created", preferredStyle: .alert)
+        
+        let okSuccessAction = UIAlertAction(title: "OK", style: .destructive, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                self.goBackToLogin()
+            @unknown default:
+                print("unknown")
+            }});
+        successAlert.addAction(okSuccessAction)
+        
         if(confirmPasswordTextField.text == passwordTextField.text) {
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) {
                 (userInfo, err) in
                 if err != nil {
                     print(err!)
-                    self.updateUserDetails();
+                    errorAlert.message = "Check you details and try again."
+                    self.present(errorAlert, animated: true, completion: nil)
                 } else {
-                    print("Successful Registration!")
                     self.updateUserDetails();
+                    self.present(successAlert, animated: true, completion: nil)
                 }
             }
+        } else {
+            errorAlert.message = "Passwords do not match"
+            self.present(errorAlert, animated: true, completion: nil)
         }
     }
     
