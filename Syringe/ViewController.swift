@@ -32,5 +32,15 @@ class ViewController: UIViewController {
         passwordEditField.setBorder()
     }
 
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        
+        Auth.auth().signIn(withEmail: usernameEditField.text!, password: passwordEditField.text!) { (user, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                print("Login Successul")
+            }
+        }
+    }
 }
 

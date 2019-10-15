@@ -28,7 +28,7 @@
 		3F2631122343635700689FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F2631152343635700689FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F2631172343635700689FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Syringe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3F50D2F82348BF82006C027C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		506FDE588A144E1767B0C5A8 /* Pods_Syringe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Syringe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB0AF7B2457BE2A8789F2C4 /* Pods-Syringe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syringe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syringe/Pods-Syringe.debug.xcconfig"; sourceTree = "<group>"; };
