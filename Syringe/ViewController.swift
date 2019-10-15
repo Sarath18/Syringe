@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameEditField: UITextField!
     @IBOutlet weak var passwordEditField: UITextField!
     var userId: String = ""
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,25 @@ class ViewController: UIViewController {
                     if snapshot.exists() {
                         print("Lab Tech")
                         self.performSegue(withIdentifier: "labTechnicianDashboard", sender: self)
-                        
                     } else {
-                        
                         print("User")
+                        let userDB = Database.database().reference(withPath: "users/\(self.userId)");
+
+                        userDB.observeSingleEvent(of: .value, with: {
+                            (snapshot) in
+                            if snapshot.exists() {
+                                self.defaults.set(self.userId, forKey: "userId");
+                                self.defaults.set(snapshot.childSnapshot(forPath: "blood_group").value, forKey: "blood_group")
+                                self.defaults.set(snapshot.childSnapshot(forPath: "date_of_birth").value, forKey: "date_of_birth");
+                                self.defaults.set(snapshot.childSnapshot(forPath: "email").value, forKey: "email");
+                                self.defaults.set(snapshot.childSnapshot(forPath: "mobile").value, forKey: "mobile");
+                                self.defaults.set(snapshot.childSnapshot(forPath: "full_name").value, forKey: "full_name");
+                            }
+                            else { }
+                        });
                         self.performSegue(withIdentifier: "patientDashboard", sender: self)
                     }
                  })
-                
             }
         }
     }
@@ -63,7 +75,6 @@ class ViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // you made a typo here
         if segue.identifier == "labTechnicianDashboard" {
             let destinationVC = segue.destination as! LabTechnicialViewController
             destinationVC.userId = userId // forced unwrap

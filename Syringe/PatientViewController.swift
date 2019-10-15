@@ -10,11 +10,18 @@ import UIKit
 
 class PatientViewController: UIViewController {
     var userId: String?
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("PATIENT TECH VIEW CONTROLLER: " + userId!)
+        print("PATIENT TECH VIEW CONTROLLER: " + defaults.string(forKey: "userId")!)
+        print(defaults.string(forKey: "blood_group")!);
+        print(defaults.string(forKey: "email") as Any);
+        print(defaults.string(forKey: "full_name") as Any);
+        print(defaults.integer(forKey: "mobile"));
+        print(defaults.string(forKey: "date_of_birth") as Any);
+        
 
         // Do any additional setup after loading the view.
     }
