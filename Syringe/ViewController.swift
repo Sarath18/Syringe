@@ -24,7 +24,8 @@ extension UITextField {
 class ViewController: UIViewController {
     @IBOutlet weak var usernameEditField: UITextField!
     @IBOutlet weak var passwordEditField: UITextField!
-
+    var userId: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,8 +40,49 @@ class ViewController: UIViewController {
                 print(error!)
             } else {
                 print("Login Successul")
+                self.userId = (Auth.auth().currentUser?.uid)!
+                let labTechniciansDB = Database.database().reference(withPath: "lab_technicians/\(self.userId)")
+                
+                labTechniciansDB.observeSingleEvent(of: .value, with: {
+                    (snapshot) in
+                    if snapshot.exists() {
+                        print("Lab Tech")
+                        self.performSegue(withIdentifier: "labTechnicianDashboard", sender: self)
+                        
+                    } else {
+                        
+                        print("User")
+                        self.performSegue(withIdentifier: "patientDashboard", sender: self)
+                    }
+                 })
+                
             }
         }
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // you made a typo here
+        if segue.identifier == "labTechnicianDashboard" {
+            let destinationVC = segue.destination as! LabTechnicialViewController
+            destinationVC.userId = userId // forced unwrap
+
+        }
+        
+        if segue.identifier == "patientDashboard" {
+            let destinationVC = segue.destination as! PatientViewController
+            destinationVC.userId = userId // forced unwrap
+
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 

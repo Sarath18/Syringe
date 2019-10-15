@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="width" constant="279" id="cuA-s1-aBb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-wave-accent" translatesAutoresizingMaskIntoConstraints="NO" id="ft0-nB-ZBM">
                                 <rect key="frame" x="-4" y="809" width="422" height="89"/>
@@ -88,11 +88,29 @@
                     <connections>
                         <outlet property="passwordEditField" destination="a4s-Jr-oFr" id="TzI-QO-8IE"/>
                         <outlet property="usernameEditField" destination="h8s-Eb-pCm" id="eM2-Jq-X0c"/>
+                        <segue destination="4fw-i9-tsa" kind="show" identifier="labTechnicianDashboard" id="gMM-bm-YSA"/>
+                        <segue destination="dGr-Ub-RhS" kind="show" identifier="patientDashboard" id="Pni-fK-M4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1180" y="138"/>
+        </scene>
+        <!--Lab Technicial View Controller-->
+        <scene sceneID="456-Kc-uca">
+            <objects>
+                <viewController id="4fw-i9-tsa" customClass="LabTechnicialViewController" customModule="Syringe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GtH-i5-nha">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="tEk-OL-jlI"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="v0x-oy-bzk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGd-qf-qgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2195.6521739130435" y="961.60714285714278"/>
         </scene>
         <!--Registration-->
         <scene sceneID="dQB-Xs-cvw">
@@ -183,6 +201,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6J-lC-LLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2195.6521739130435" y="137.94642857142856"/>
+        </scene>
+        <!--Patient View Controller-->
+        <scene sceneID="PQA-Xq-1QU">
+            <objects>
+                <viewController id="dGr-Ub-RhS" customClass="PatientViewController" customModule="Syringe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hNV-Of-fQY" customClass="PatientV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="PU2-qn-WHQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bdE-8H-IcT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81t-Wa-kgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="962"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nxk-VW-vyh">
