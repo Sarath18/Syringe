@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AE4CC2E4063C999305D424A /* Pods_Syringe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506FDE588A144E1767B0C5A8 /* Pods_Syringe.framework */; };
+		3F0E5DBF2359C927009CC447 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E5DBE2359C927009CC447 /* ProfileViewController.swift */; };
 		3F2631092343635600689FE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2631082343635600689FE3 /* AppDelegate.swift */; };
 		3F26310B2343635600689FE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26310A2343635600689FE3 /* ViewController.swift */; };
 		3F26310E2343635600689FE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F26310C2343635600689FE3 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		04637567EABDDA13583F6FC2 /* Pods-Syringe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syringe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syringe/Pods-Syringe.release.xcconfig"; sourceTree = "<group>"; };
+		3F0E5DBE2359C927009CC447 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3F2631052343635600689FE3 /* Syringe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syringe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2631082343635600689FE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F26310A2343635600689FE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				3F26310F2343635600689FE3 /* Syringe.xcdatamodeld */,
 				3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */,
 				8155EB1B2355ECE100CAEC6D /* PatientViewController.swift */,
+				3F0E5DBE2359C927009CC447 /* ProfileViewController.swift */,
 			);
 			path = Syringe;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				3F2631092343635600689FE3 /* AppDelegate.swift in Sources */,
 				8155EB1C2355ECE100CAEC6D /* PatientViewController.swift in Sources */,
 				3F2631112343635600689FE3 /* Syringe.xcdatamodeld in Sources */,
+				3F0E5DBF2359C927009CC447 /* ProfileViewController.swift in Sources */,
 				3F50D2F92348BF82006C027C /* RegisterViewController.swift in Sources */,
 				8155EB162355EA4600CAEC6D /* LabTechnicialViewController.swift in Sources */,
 			);

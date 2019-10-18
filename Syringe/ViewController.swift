@@ -48,7 +48,8 @@ class ViewController: UIViewController {
                     (snapshot) in
                     if snapshot.exists() {
                         print("Lab Tech")
-                        self.performSegue(withIdentifier: "labTechnicianDashboard", sender: self)
+                        let labtechVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "labtechVC") as? LabTechnicialViewController
+                        self.navigationController?.pushViewController(labtechVC!, animated: true)
                     } else {
                         print("User")
                         let userDB = Database.database().reference(withPath: "users/\(self.userId)");
@@ -65,35 +66,12 @@ class ViewController: UIViewController {
                             }
                             else { }
                         });
-                        self.performSegue(withIdentifier: "patientDashboard", sender: self)
+                        let patientVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patientDashboard") as? UITabBarController
+                        self.navigationController?.pushViewController(patientVC!, animated: true)
                     }
                  })
             }
         }
     }
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "labTechnicianDashboard" {
-            let destinationVC = segue.destination as! LabTechnicialViewController
-            destinationVC.userId = userId // forced unwrap
-
-        }
-        
-        if segue.identifier == "patientDashboard" {
-            let destinationVC = segue.destination as! PatientViewController
-            destinationVC.userId = userId // forced unwrap
-
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
 }
 

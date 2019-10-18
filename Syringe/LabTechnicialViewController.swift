@@ -9,10 +9,11 @@
 import UIKit
 
 class LabTechnicialViewController: UIViewController {
-    var userId: String?
+    //var userId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LAB TECH VIEW CONTROLLER: " + userId!)
+        self.navigationController?.isNavigationBarHidden = true;
+        //print("LAB TECH VIEW CONTROLLER: " + userId!)
         // Do any additional setup after loading the view.
     }
     
