@@ -11,6 +11,8 @@ import Firebase
 
 class AppointmentViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    let defaults = UserDefaults.standard;
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -41,6 +43,79 @@ class AppointmentViewController: UIViewController, UIPickerViewDelegate, UIPicke
             else { }
         });
     }
+    
+    @IBAction func bookButtonPressed(_ sender: Any) {
+        
+        //let selected_hospital = hospitalPickerData[hospitalPicker.selectedRow(inComponent: 0)]
+        let hospital_id = hospitalPicker.selectedRow(inComponent: 0)
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        
+        let appointment_date = dateFormatter.string(from: dateTimePicker.date)
+        
+        let userId = defaults.string(forKey: "userId")!
+        let name = defaults.string(forKey: "full_name")!
+        var selected_blood_tests : [String] = [];
+        
+        for i in 0...bloodTestButtonState.count-1 {
+            if(bloodTestButtonState[i]) {
+                selected_blood_tests.append(bloodTests[i]);
+            }
+        }
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        ref.child("appointments").child("\(hospital_id + 1)").childByAutoId().setValue(["userId": userId, "full_name": name, "appointment_date": appointment_date, "tests": selected_blood_tests])
+
+    }
+
+    @IBAction func glucoseTestClicked(_ sender: Any) {
+        bloodTestButtonState[0] = !bloodTestButtonState[0];
+        if(bloodTestButtonState[0]) {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-selected"), for: UIControl.State.normal)
+        }
+        else {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-unselected"), for: UIControl.State.normal)
+        }
+    }
+    
+    @IBAction func calciumTestClicked(_ sender: Any) {
+        bloodTestButtonState[1] = !bloodTestButtonState[1];
+        if(bloodTestButtonState[1]) {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-selected"), for: UIControl.State.normal)
+        }
+        else {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-unselected"), for: UIControl.State.normal)
+        }
+    }
+    
+    @IBAction func cholestrolTestClicked(_ sender: Any) {
+        bloodTestButtonState[2] = !bloodTestButtonState[2];
+        if(bloodTestButtonState[2]) {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-selected"), for: UIControl.State.normal)
+        }
+        else {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-unselected"), for: UIControl.State.normal)
+        }
+        
+    }
+    
+    @IBAction func dimerTestClicked(_ sender: Any) {
+        bloodTestButtonState[3] = !bloodTestButtonState[3];
+        if(bloodTestButtonState[3]) {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-selected"), for: UIControl.State.normal)
+        }
+        else {
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "radio-button-unselected"), for: UIControl.State.normal)
+        }
+        
+    }
+
+    var bloodTestButtonState : [Bool] = [false, false, false, false];
+    var bloodTests : [String] = ["Glucose", "Calcium", "Cholestrol", "D-dimer"]
     
     @IBOutlet weak var hospitalPicker: UIPickerView!
     @IBOutlet weak var dateTimePicker: UIDatePicker!
