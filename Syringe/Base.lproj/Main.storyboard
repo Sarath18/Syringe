@@ -133,6 +133,7 @@
                     <navigationItem key="navigationItem" id="v0x-oy-bzk"/>
                     <connections>
                         <outlet property="tableView" destination="2Pq-rZ-ZY0" id="tOx-6d-N2c"/>
+                        <segue destination="ciS-Ix-Bhw" kind="show" identifier="appointmentDetailsPage" id="nSv-Ss-9MZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGd-qf-qgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -395,6 +396,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IJ-Cg-Ab1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018.840579710145" y="1796.6517857142856"/>
+        </scene>
+        <!--Appointment Details View Controller-->
+        <scene sceneID="4xC-Fz-beY">
+            <objects>
+                <viewController storyboardIdentifier="appointmentDetailsViewController" id="ciS-Ix-Bhw" customClass="AppointmentDetailsViewController" customModule="Syringe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1lc-M4-Tyb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZl-s2-U4H">
+                                <rect key="frame" x="20" y="176" width="296" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-D4-m8q">
+                                <rect key="frame" x="20" y="216" width="296" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZe-8Z-Hjt">
+                                <rect key="frame" x="20" y="252" width="296" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="soh-25-MGq"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateTimeLabel" destination="OhS-D4-m8q" id="P1c-S8-XPg"/>
+                        <outlet property="nameLabel" destination="tZl-s2-U4H" id="QSJ-Xl-uIO"/>
+                        <outlet property="testsLabel" destination="FZe-8Z-Hjt" id="tKZ-cb-njB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pi9-Ry-86I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2195.6521739130435" y="1796.6517857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nxk-VW-vyh">

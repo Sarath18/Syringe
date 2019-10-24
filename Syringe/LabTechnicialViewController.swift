@@ -13,6 +13,8 @@ class LabTechnicialViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     var appointments: [String] = []
+    var userIds: [String] = []
+    
     var refreshControl = UIRefreshControl()
     
     let cellReuseIdentifier = "cell"
@@ -23,26 +25,26 @@ class LabTechnicialViewController: UIViewController, UITableViewDelegate, UITabl
         return self.appointments.count
     }
     
-    // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // create a new cell if needed or reuse an old one
         let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
         
-        // set the text from the data model
         cell.textLabel?.text = self.appointments[indexPath.row]
         
         return cell
     }
     
-    // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
+        print(userIds[indexPath.row])
+        let appointmentVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "appointmentDetailsViewController") as? AppointmentDetailsViewController
+        appointmentVC?.userId = userIds[indexPath.row];
+        self.navigationController?.pushViewController(appointmentVC!, animated: true)
     }
     
     func fetchAppointmentDetails(mode : Int) {
         if(mode == 1) {
             self.appointments = [];
+            self.userIds = [];
         }
         let appointmentDB = Database.database().reference(withPath: "appointments/1");
         
@@ -50,6 +52,7 @@ class LabTechnicialViewController: UIViewController, UITableViewDelegate, UITabl
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 self.appointments.append(snap.childSnapshot(forPath: "full_name").value as! String);
+                self.userIds.append(snap.key);
             }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
