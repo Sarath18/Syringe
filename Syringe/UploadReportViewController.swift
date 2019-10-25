@@ -7,21 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
-class ViewController: UIViewController {
+class UploadReportViewController: UIViewController {
     
     var valuesInRange = [[11.0, 16.0], [3.5, 5.50], [4.5, 11], [150, 450], [0, 2], [40, 70], [20, 45], [2, 10]]
     @IBOutlet var labels: [UILabel]!
     @IBOutlet var textFields: [UITextField]!
-    
-    @IBOutlet weak var messageLabel: UILabel!
-    
+    var userId : String = "";
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        messageLabel.text = ""
     }
 
+    @IBAction func uploadReportButtonPressed(_ sender: Any) {
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+
+        ref.child("reports").child("\(userId)").childByAutoId().setValue(["HGB": textFields[0].text!, "RBC": textFields[1].text!, "WBC": textFields[2].text!, "PLT": textFields[3].text!, "BAS": textFields[4].text!, "NEU": textFields[5].text!, "LYM": textFields[6].text!, "MON": textFields[7].text!])
+    }
     @IBAction func valueChanged(_ sender: UITextField) {
         
         if let currIndex = textFields.firstIndex(of: sender) {
@@ -34,12 +38,8 @@ class ViewController: UIViewController {
                 currLabel.textColor = UIColor.green
             } else {
                 currLabel.textColor = UIColor.red
-                messageLabel.text = "CRITICAL VALUES HERE" // text message and NOTIFICATION TO DOCTOR
-                // if doctor reads the message then notification to lab that doc has read the notification
             }
         }
-        
-        
     }
     
 }

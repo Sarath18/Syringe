@@ -11,12 +11,19 @@ import Firebase
 
 class AppointmentDetailsViewController: UIViewController {
     var userId : String = ""
+    var patientId : String = ""
 
     @IBOutlet weak var bloodTestsTextArea: UITextView!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
     var bloodTests : [String] = [];
+
+    @IBAction func uploadReportButton(_ sender: Any) {
+        let uploadReportVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "uploadReportViewController") as? UploadReportViewController
+        uploadReportVC?.userId = self.patientId;
+        self.navigationController?.pushViewController(uploadReportVC!, animated: true)
+    }
 
     func fetchAppointmentDetails() {
 
@@ -36,6 +43,9 @@ class AppointmentDetailsViewController: UIViewController {
                     for i in 0...snap.childrenCount - 1 {
                         self.bloodTestsTextArea.text += "\n" + (snap.childSnapshot(forPath: "\(i)").value! as? String)!
                     }
+                }
+                else if(snap.key == "userId") {
+                    self.patientId = (snap.value as? String)!;
                 }
             }
         })

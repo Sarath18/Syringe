@@ -19,6 +19,7 @@
 		3F50D2F72348BB5E006C027C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */; };
 		3F50D2F92348BF82006C027C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F50D2F82348BF82006C027C /* RegisterViewController.swift */; };
 		3FCA3B7523632462007B7261 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCA3B7423632462007B7261 /* ReportViewController.swift */; };
+		3FCA3B77236328D3007B7261 /* UploadReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCA3B76236328D3007B7261 /* UploadReportViewController.swift */; };
 		3FFF67632361DD2E00A12357 /* AppointmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF67622361DD2E00A12357 /* AppointmentDetailsViewController.swift */; };
 		8155EB162355EA4600CAEC6D /* LabTechnicialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155EB152355EA4600CAEC6D /* LabTechnicialViewController.swift */; };
 		8155EB1C2355ECE100CAEC6D /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155EB1B2355ECE100CAEC6D /* PatientViewController.swift */; };
@@ -39,6 +40,7 @@
 		3F50D2F62348BB5E006C027C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Syringe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3F50D2F82348BF82006C027C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		3FCA3B7423632462007B7261 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		3FCA3B76236328D3007B7261 /* UploadReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadReportViewController.swift; sourceTree = "<group>"; };
 		3FFF67622361DD2E00A12357 /* AppointmentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsViewController.swift; sourceTree = "<group>"; };
 		506FDE588A144E1767B0C5A8 /* Pods_Syringe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Syringe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8155EB152355EA4600CAEC6D /* LabTechnicialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTechnicialViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		3F2631072343635600689FE3 /* Syringe */ = {
 			isa = PBXGroup;
 			children = (
+				3FCA3B76236328D3007B7261 /* UploadReportViewController.swift */,
 				3F2631082343635600689FE3 /* AppDelegate.swift */,
 				3F26310A2343635600689FE3 /* ViewController.swift */,
 				8155EB152355EA4600CAEC6D /* LabTechnicialViewController.swift */,
@@ -242,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FCA3B77236328D3007B7261 /* UploadReportViewController.swift in Sources */,
 				3F0E5DC12359D1F7009CC447 /* AppointmentViewController.swift in Sources */,
 				3FFF67632361DD2E00A12357 /* AppointmentDetailsViewController.swift in Sources */,
 				3F26310B2343635600689FE3 /* ViewController.swift in Sources */,
