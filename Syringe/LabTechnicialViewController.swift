@@ -19,6 +19,18 @@ class LabTechnicialViewController: UIViewController, UITableViewDelegate, UITabl
     
     let cellReuseIdentifier = "cell"
     
+    override func willMove(toParent parent: UIViewController?)
+    {
+        super.willMove(toParent: parent)
+        if parent == nil
+        {
+            self.navigationController?.isNavigationBarHidden = false;
+        }
+    }
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+         _ = self.navigationController?.popToRootViewController(animated: true)
+    }
     @IBOutlet weak var tableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

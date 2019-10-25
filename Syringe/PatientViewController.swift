@@ -18,6 +18,12 @@ class PatientViewController: UIViewController, UITableViewDelegate, UITableViewD
     var refreshControl = UIRefreshControl()
     
     let cellReuseIdentifier = "cell"
+
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+            self.navigationController?.isNavigationBarHidden = false;
+         _ = self.navigationController?.popToRootViewController(animated: true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.reports.count

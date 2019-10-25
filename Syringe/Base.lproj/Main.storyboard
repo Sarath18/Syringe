@@ -70,6 +70,17 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Syringe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o90-Ca-2KU">
+                                <rect key="frame" x="134" y="277" width="147" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="syringe-logo" translatesAutoresizingMaskIntoConstraints="NO" id="O8x-19-Op1">
+                                <rect key="frame" x="180" y="180" width="68" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -96,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="138"/>
+            <point key="canvasLocation" x="1179.7101449275362" y="137.94642857142856"/>
         </scene>
         <!--Lab Technicial View Controller-->
         <scene sceneID="456-Kc-uca">
@@ -116,6 +127,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghc-Dt-Jde">
+                                <rect key="frame" x="344" y="150" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="4fw-i9-tsa" eventType="touchUpInside" id="er2-kO-2vq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -125,7 +143,9 @@
                             <constraint firstItem="2tU-C6-yar" firstAttribute="leading" secondItem="tEk-OL-jlI" secondAttribute="leading" constant="10" id="a0T-Jp-i2g"/>
                             <constraint firstItem="2tU-C6-yar" firstAttribute="top" secondItem="tEk-OL-jlI" secondAttribute="top" constant="10" id="diL-MB-ceA"/>
                             <constraint firstItem="2Pq-rZ-ZY0" firstAttribute="top" secondItem="2tU-C6-yar" secondAttribute="bottom" constant="10" id="ehR-dN-jeI"/>
+                            <constraint firstItem="Ghc-Dt-Jde" firstAttribute="top" secondItem="tEk-OL-jlI" secondAttribute="top" constant="10" id="k4C-cz-tul"/>
                             <constraint firstItem="tEk-OL-jlI" firstAttribute="bottom" secondItem="2Pq-rZ-ZY0" secondAttribute="bottom" id="toH-uD-j3e"/>
+                            <constraint firstItem="tEk-OL-jlI" firstAttribute="trailing" secondItem="Ghc-Dt-Jde" secondAttribute="trailing" constant="15" id="v9T-A9-oX6"/>
                             <constraint firstItem="tEk-OL-jlI" firstAttribute="trailing" secondItem="2Pq-rZ-ZY0" secondAttribute="trailing" id="wAp-Ij-G3o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tEk-OL-jlI"/>
@@ -248,6 +268,13 @@
                                 <rect key="frame" x="0.0" y="186.5" width="414" height="626.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdS-It-GKD">
+                                <rect key="frame" x="344" y="150" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="dGr-Ub-RhS" eventType="touchUpInside" id="gLj-8X-KnX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -257,7 +284,9 @@
                             <constraint firstItem="wQd-Yt-Y3i" firstAttribute="top" secondItem="Om5-F3-3Tr" secondAttribute="bottom" constant="10" id="KGQ-cN-p9O"/>
                             <constraint firstItem="wQd-Yt-Y3i" firstAttribute="centerX" secondItem="PU2-qn-WHQ" secondAttribute="centerX" id="LVx-mq-aui"/>
                             <constraint firstItem="PU2-qn-WHQ" firstAttribute="trailing" secondItem="wQd-Yt-Y3i" secondAttribute="trailing" id="NoI-hb-Sfy"/>
+                            <constraint firstItem="PU2-qn-WHQ" firstAttribute="trailing" secondItem="RdS-It-GKD" secondAttribute="trailing" constant="15" id="bKf-7h-fBP"/>
                             <constraint firstItem="PU2-qn-WHQ" firstAttribute="bottom" secondItem="wQd-Yt-Y3i" secondAttribute="bottom" id="eaI-3n-tVQ"/>
+                            <constraint firstItem="RdS-It-GKD" firstAttribute="top" secondItem="PU2-qn-WHQ" secondAttribute="top" constant="10" id="uMO-sA-BBh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PU2-qn-WHQ"/>
                     </view>
@@ -871,5 +900,6 @@
         <image name="login-wave-accent" width="377" height="78.5"/>
         <image name="next" width="49" height="49"/>
         <image name="radio-button-unselected" width="19" height="19"/>
+        <image name="syringe-logo" width="65.5" height="100"/>
     </resources>
 </document>
