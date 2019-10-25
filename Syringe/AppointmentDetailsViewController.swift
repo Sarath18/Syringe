@@ -12,7 +12,7 @@ import Firebase
 class AppointmentDetailsViewController: UIViewController {
     var userId : String = ""
 
-    @IBOutlet weak var testsLabel: UILabel!
+    @IBOutlet weak var bloodTestsTextArea: UITextView!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -32,8 +32,10 @@ class AppointmentDetailsViewController: UIViewController {
                     self.dateTimeLabel.text = snap.value as? String;
                 }
                 else if(snap.key == "tests") {
-                    self.testsLabel.text = "Tests";
-                    // TODO: Display all the tests selected in the databse here
+                    self.bloodTestsTextArea.text = "Tests:"
+                    for i in 0...snap.childrenCount - 1 {
+                        self.bloodTestsTextArea.text += "\n" + (snap.childSnapshot(forPath: "\(i)").value! as? String)!
+                    }
                 }
             }
         })
