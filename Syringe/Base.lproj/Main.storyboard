@@ -237,15 +237,55 @@
                     <view key="view" contentMode="scaleToFill" id="hNV-Of-fQY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Reports" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om5-F3-3Tr">
+                                <rect key="frame" x="152.5" y="150" width="109" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-Yt-Y3i">
+                                <rect key="frame" x="0.0" y="186.5" width="414" height="626.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Om5-F3-3Tr" firstAttribute="top" secondItem="PU2-qn-WHQ" secondAttribute="top" constant="10" id="2TM-1g-tRe"/>
+                            <constraint firstItem="wQd-Yt-Y3i" firstAttribute="leading" secondItem="PU2-qn-WHQ" secondAttribute="leading" id="6gK-vM-Fse"/>
+                            <constraint firstItem="Om5-F3-3Tr" firstAttribute="centerX" secondItem="PU2-qn-WHQ" secondAttribute="centerX" id="K7O-pF-irb"/>
+                            <constraint firstItem="wQd-Yt-Y3i" firstAttribute="top" secondItem="Om5-F3-3Tr" secondAttribute="bottom" constant="10" id="KGQ-cN-p9O"/>
+                            <constraint firstItem="wQd-Yt-Y3i" firstAttribute="centerX" secondItem="PU2-qn-WHQ" secondAttribute="centerX" id="LVx-mq-aui"/>
+                            <constraint firstItem="PU2-qn-WHQ" firstAttribute="trailing" secondItem="wQd-Yt-Y3i" secondAttribute="trailing" id="NoI-hb-Sfy"/>
+                            <constraint firstItem="PU2-qn-WHQ" firstAttribute="bottom" secondItem="wQd-Yt-Y3i" secondAttribute="bottom" id="eaI-3n-tVQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PU2-qn-WHQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="Rb3-3V-wae"/>
                     <navigationItem key="navigationItem" id="bdE-8H-IcT"/>
+                    <connections>
+                        <outlet property="tableView" destination="wQd-Yt-Y3i" id="hzL-5U-cs7"/>
+                        <segue destination="t70-LY-jBN" kind="show" id="2ir-al-gnm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81t-Wa-kgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-709" y="1797"/>
+        </scene>
+        <!--Report View Controller-->
+        <scene sceneID="UZ8-dX-lWD">
+            <objects>
+                <viewController storyboardIdentifier="reportViewController" id="t70-LY-jBN" customClass="ReportViewController" customModule="Syringe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nZh-zm-IAz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Byb-HP-G8X"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxk-1c-8HM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-710" y="2565"/>
         </scene>
         <!--Book-->
         <scene sceneID="eNV-VG-qxH">
