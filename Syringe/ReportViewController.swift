@@ -48,6 +48,26 @@ class ReportViewController: UIViewController {
         })
     }
 
+
+    func fetchLabelValues(val:String)->Array<Double>
+    {
+        let userId = defaults.string(forKey:"userId");
+        let ref = Database.database().reference();
+        let xval = Array<Double>
+
+        ref?.child("Reports").child("\(userID)").observe(.childAdded,with:{(snapshot) in 
+            if let temp = snapshot.childSnapshot(forPath:val).value as? String {
+                let tempD = Double(temp);
+                xval.append(tempD);
+            }
+        });
+
+        return xval;
+
+
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false;
