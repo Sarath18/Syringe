@@ -114,6 +114,8 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.prefersLargeTitles = true;
+        
         // Adding custom border to text fields
         passwordTextField.setBorder()
         confirmPasswordTextField.setBorder()
@@ -126,7 +128,16 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         bloodGroupPicker.dataSource = self
         bloodGroupPickerData = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
     }
-
+    
+    override func willMove(toParent parent: UIViewController?)
+    {
+        super.willMove(toParent: parent)
+        if parent == nil
+        {
+            self.navigationController?.navigationBar.prefersLargeTitles = false;
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -58,6 +58,8 @@ class ViewController: UIViewController {
                         userDB.observeSingleEvent(of: .value, with: {
                             (snapshot) in
                             if snapshot.exists() {
+                                print("here")
+                                print(self.userId)
                                 self.defaults.set(self.userId, forKey: "userId");
                                 self.defaults.set(snapshot.childSnapshot(forPath: "blood_group").value, forKey: "blood_group")
                                 self.defaults.set(snapshot.childSnapshot(forPath: "date_of_birth").value, forKey: "date_of_birth");
