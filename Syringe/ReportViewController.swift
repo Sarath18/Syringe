@@ -33,6 +33,9 @@ class ReportViewController: UIViewController {
         reportDB.observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
+                if(snap.key == "date" || snap.key == "hospital") {
+                    continue;
+                }
                 self.testLabels[count].text = snap.key;
                 self.testValues[count].text = (snap.value as! String);
                 let value = (snap.value as! NSString).doubleValue;
@@ -42,30 +45,27 @@ class ReportViewController: UIViewController {
                 else {
                     self.testLabels[count].textColor = UIColor.red;
                 }
-
                 count += 1;
             }
         })
     }
 
 
-    func fetchLabelValues(val:String)->Array<Double>
+    func fetchLabelValues(val:String) -> [Double]
     {
         let userId = defaults.string(forKey:"userId");
         let ref = Database.database().reference();
-        let xval = Array<Double>
+        var xval : [Double] = []
 
-        ref?.child("Reports").child("\(userID)").observe(.childAdded,with:{(snapshot) in 
+        ref.child("Reports").child("\(String(describing: userId))").observe(.childAdded,with:{(snapshot) in
             if let temp = snapshot.childSnapshot(forPath:val).value as? String {
                 let tempD = Double(temp);
-                xval.append(tempD);
+                xval.append(tempD!);
             }
         });
 
         return xval;
 
-
-        
     }
 
     override func viewDidLoad() {

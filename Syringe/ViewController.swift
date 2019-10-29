@@ -66,11 +66,12 @@ class ViewController: UIViewController {
                                 self.defaults.set(snapshot.childSnapshot(forPath: "email").value, forKey: "email");
                                 self.defaults.set(snapshot.childSnapshot(forPath: "mobile").value, forKey: "mobile");
                                 self.defaults.set(snapshot.childSnapshot(forPath: "full_name").value, forKey: "full_name");
+                                let patientVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patientDashboard") as? UITabBarController
+                                self.navigationController?.pushViewController(patientVC!, animated: true)
+
                             }
                             else { }
                         });
-                        let patientVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patientDashboard") as? UITabBarController
-                        self.navigationController?.pushViewController(patientVC!, animated: true)
                     }
                  })
             }
