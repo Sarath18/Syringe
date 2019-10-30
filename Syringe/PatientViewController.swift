@@ -89,6 +89,11 @@ class PatientViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func refresh(_ sender: Any) {
         fetchAppointmentDetails(mode: 1)
     }
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        self.defaults.set("", forKey: "userId");
+         _ = self.navigationController?.popToRootViewController(animated: true)
+    }
 
 }
 
@@ -105,10 +110,7 @@ class PatientViewController: UIViewController, UITableViewDelegate, UITableViewD
 //
 //    let cellReuseIdentifier = "cell"
 //
-//    @IBAction func logoutButtonPressed(_ sender: Any) {
-//            self.navigationController?.isNavigationBarHidden = false;
-//         _ = self.navigationController?.popToRootViewController(animated: true)
-//    }
+
 //
 //
 //

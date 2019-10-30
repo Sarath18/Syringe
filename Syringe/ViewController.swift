@@ -28,6 +28,12 @@ class ViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
+        if((defaults.string(forKey: "userId")) != "")
+        {
+            let patientVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patientDashboard") as? UITabBarController
+            self.navigationController?.pushViewController(patientVC!, animated: false)
+        }
+        
         super.viewDidLoad()
         //self.navigationController?.isNavigationBarHidden = true;
 
