@@ -9,10 +9,22 @@
 import UIKit
 import Firebase
 
-class ReportViewController: UIViewController {
+class ReportDataCell: UITableViewCell {
+
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellValue: UILabel!
+    @IBOutlet weak var cellRange: UILabel!
+}
+
+class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var reportValue: [Double] = []
+    
     var defaults = UserDefaults.standard;
     var reportID : String = "";
-    var reportNumber : String = "";
+    var reportDate : String = "";
+    var hospital : String = ""
+    var dataName : [String] = []//["HGB", "RBC", "WBC", "PLT", "BAS", "NEU", "LYM", "MON"]
     var rangeValueDict = ["HGB": [11.0, 16.0],
                           "RBC": [3.5, 5.50],
                           "WBC": [4.5, 11],
@@ -24,7 +36,37 @@ class ReportViewController: UIViewController {
     
     @IBOutlet var testLabels: [UILabel]!
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet var testValues: [UITextField]!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var hospitalLabel: UILabel!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataName.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReportDataCell") as! ReportDataCell
+        let name = self.dataName[indexPath.row];
+        let lower_limit : Double = rangeValueDict[name]![0]
+        let upper_limit : Double = rangeValueDict[name]![1]
+        let value_range = "[ " + lower_limit.description + "-" + upper_limit.description + "]";
+        cell.cellTitle.text = name;
+        cell.cellValue.text = self.reportValue[indexPath.row].description;
+        cell.cellRange.text = value_range;
+        
+        if(reportValue[indexPath.row] < lower_limit || reportValue[indexPath.row] > upper_limit) {
+            cell.cellValue.textColor = UIColor.red;
+            cell.cellValue.font = UIFont.boldSystemFont(ofSize: 20.0)
+        }
+        
+        
+        return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     
     func fetchReportDetails() {
         let userId = defaults.string(forKey: "userId")!;
@@ -36,44 +78,41 @@ class ReportViewController: UIViewController {
                 if(snap.key == "date" || snap.key == "hospital") {
                     continue;
                 }
-                self.testLabels[count].text = snap.key;
-                self.testValues[count].text = (snap.value as! String);
+                self.dataName.append(snap.key);
                 let value = (snap.value as! NSString).doubleValue;
-                if(value >= self.rangeValueDict[snap.key]![0] && value <= self.rangeValueDict[snap.key]![1]) {
-                    self.testLabels[count].textColor = UIColor.green;
-                }
-                else {
-                    self.testLabels[count].textColor = UIColor.red;
-                }
+                self.reportValue.append(value)
                 count += 1;
             }
+            self.tableView.reloadData()
         })
     }
 
 
-    func fetchLabelValues(val:String) -> [Double]
-    {
-        let userId = defaults.string(forKey:"userId");
-        let ref = Database.database().reference();
-        var xval : [Double] = []
-
-        ref.child("Reports").child("\(String(describing: userId))").observe(.childAdded,with:{(snapshot) in
-            if let temp = snapshot.childSnapshot(forPath:val).value as? String {
-                let tempD = Double(temp);
-                xval.append(tempD!);
-            }
-        });
-
-        return xval;
-
-    }
+//    func fetchLabelValues(val:String) -> [Double]
+//    {
+//        let userId = defaults.string(forKey:"userId");
+//        let ref = Database.database().reference();
+//        var xval : [Double] = []
+//
+//        ref.child("Reports").child("\(String(describing: userId))").observe(.childAdded,with:{(snapshot) in
+//            if let temp = snapshot.childSnapshot(forPath:val).value as? String {
+//                let tempD = Double(temp);
+//                xval.append(tempD!);
+//            }
+//        });
+//
+//        return xval;
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false;
-        self.title = reportNumber;
+        self.title = "Report: " + reportDate;
+        self.dateLabel.text = reportDate;
+        self.hospitalLabel.text = hospital;
         
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         fetchReportDetails();
     }

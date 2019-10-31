@@ -33,6 +33,7 @@ class PatientViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReportCell") as! ReportTableViewCell
         cell.cellTitle.text = self.reports[indexPath.row]
         cell.cellDescription.text = self.hospital[indexPath.row]
+
         return cell;
     }
     
@@ -41,7 +42,8 @@ class PatientViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         let reportVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "reportViewController") as? ReportViewController
         reportVC?.reportID = reportID[indexPath.row];
-        reportVC?.reportNumber = "Report: " + reports[indexPath.row];
+        reportVC?.reportDate = reports[indexPath.row];
+        reportVC?.hospital = hospital[indexPath.row];
         self.navigationController?.pushViewController(reportVC!, animated: true)
     }
     
