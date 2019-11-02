@@ -372,7 +372,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PU2-qn-WHQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Rb3-3V-wae"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="Rb3-3V-wae"/>
                     <navigationItem key="navigationItem" title="Title" id="zS7-4n-i3I"/>
                     <connections>
                         <outlet property="tableView" destination="kiJ-0p-qa8" id="7AP-CE-83a"/>
@@ -706,7 +706,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="t6O-eb-cn0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Book" id="uPS-tM-M7m"/>
+                    <tabBarItem key="tabBarItem" title="Book" image="book" selectedImage="book" id="uPS-tM-M7m"/>
                     <connections>
                         <outlet property="dateTimePicker" destination="Sk8-g8-1Wi" id="vCZ-AY-pLZ"/>
                         <outlet property="hospitalPicker" destination="bN0-Es-kHZ" id="Cdm-dy-NGK"/>
@@ -742,7 +742,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ebg-Yx-fEH"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="2QS-Mx-TEA"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" selectedImage="profile" id="2QS-Mx-TEA"/>
                     <connections>
                         <outlet property="patientName" destination="4PG-8p-Ak6" id="oFL-WJ-xnQ"/>
                     </connections>
@@ -1011,6 +1011,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.87220406530000005" green="0.36897453670000002" blue="0.34897226100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="dGr-Ub-RhS" kind="relationship" relationship="viewControllers" id="30k-Sx-B2E"/>
@@ -1024,10 +1026,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" width="24" height="24"/>
         <image name="book-button" width="258" height="55"/>
+        <image name="home" width="24" height="24"/>
         <image name="login-button" width="258" height="55"/>
         <image name="login-wave-accent" width="376.66665649414062" height="78.333335876464844"/>
         <image name="next" width="49" height="49"/>
+        <image name="profile" width="24" height="24"/>
         <image name="radio-button-unselected" width="18.666666030883789" height="18.666666030883789"/>
         <image name="syringe-logo" width="65.666664123535156" height="100"/>
     </resources>
