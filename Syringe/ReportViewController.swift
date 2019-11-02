@@ -19,6 +19,7 @@ class ReportDataCell: UITableViewCell {
 class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var reportValue: [Double] = []
+    var xval : [Double] = []
     
     var defaults = UserDefaults.standard;
     var reportID : String = "";
@@ -65,6 +66,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(dataName[indexPath.row])
         
     }
     
@@ -88,21 +90,25 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
 
-//    func fetchLabelValues(val:String) -> [Double]
-//    {
-//        let userId = defaults.string(forKey:"userId");
-//        let ref = Database.database().reference();
-//        var xval : [Double] = []
-//
-//        ref.child("Reports").child("\(String(describing: userId))").observe(.childAdded,with:{(snapshot) in
-//            if let temp = snapshot.childSnapshot(forPath:val).value as? String {
-//                let tempD = Double(temp);
-//                xval.append(tempD!);
-//            }
-//        });
-//
-//        return xval;
-//    }
+    func fetchLabelValues(val:String)
+    {
+        let userId = defaults.string(forKey: "userId")!;
+        let ref = Database.database().reference(withPath: "reports/\(userId)/");
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            for child in snapshot.children {
+                let ch = child as! DataSnapshot;
+                for c in ch.children {
+                    let snap = c as! DataSnapshot
+                    if(snap.key == val) {
+                        let value = (snap.value as! NSString).doubleValue;
+                        self.xval.append(value)
+                    }
+                }
+            }
+            print(self.xval)
+        })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +121,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         
         fetchReportDetails();
+        print(fetchLabelValues(val: "HGB"));
     }
     
     override func willMove(toParent parent: UIViewController?)
