@@ -67,6 +67,9 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(dataName[indexPath.row])
+        let graphVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "graphViewController") as? GraphViewController
+               graphVC?.ylabel = dataName[indexPath.row]
+               self.navigationController?.pushViewController(graphVC!, animated: true)
         
     }
     
@@ -89,27 +92,6 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
 
-
-    func fetchLabelValues(val:String)
-    {
-        let userId = defaults.string(forKey: "userId")!;
-        let ref = Database.database().reference(withPath: "reports/\(userId)/");
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            for child in snapshot.children {
-                let ch = child as! DataSnapshot;
-                for c in ch.children {
-                    let snap = c as! DataSnapshot
-                    if(snap.key == val) {
-                        let value = (snap.value as! NSString).doubleValue;
-                        self.xval.append(value)
-                    }
-                }
-            }
-            print(self.xval)
-        })
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false;
@@ -121,7 +103,6 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         
         fetchReportDetails();
-        print(fetchLabelValues(val: "HGB"));
     }
     
     override func willMove(toParent parent: UIViewController?)
