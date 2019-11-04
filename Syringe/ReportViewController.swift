@@ -68,8 +68,9 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(dataName[indexPath.row])
         let graphVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "graphViewController") as? GraphViewController
-               graphVC?.ylabel = dataName[indexPath.row]
-               self.navigationController?.pushViewController(graphVC!, animated: true)
+        graphVC?.ylabel = dataName[indexPath.row]
+        //self.present(graphVC!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(graphVC!, animated: true)
         
     }
     
