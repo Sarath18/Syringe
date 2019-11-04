@@ -25,7 +25,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var reportID : String = "";
     var reportDate : String = "";
     var hospital : String = ""
-    var dataName : [String] = []//["HGB", "RBC", "WBC", "PLT", "BAS", "NEU", "LYM", "MON"]
+    var dataName : [String] = []
     var rangeValueDict = ["HGB": [11.0, 16.0],
                           "RBC": [3.5, 5.50],
                           "WBC": [4.5, 11],
@@ -51,7 +51,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let name = self.dataName[indexPath.row];
         let lower_limit : Double = rangeValueDict[name]![0]
         let upper_limit : Double = rangeValueDict[name]![1]
-        let value_range = "[ " + lower_limit.description + "-" + upper_limit.description + "]";
+        let value_range = "[" + lower_limit.description + "-" + upper_limit.description + "]";
         cell.cellTitle.text = name;
         cell.cellValue.text = self.reportValue[indexPath.row].description;
         cell.cellRange.text = value_range;
@@ -69,6 +69,11 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(dataName[indexPath.row])
         let graphVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "graphViewController") as? GraphViewController
         graphVC?.ylabel = dataName[indexPath.row]
+        let name = self.dataName[indexPath.row];
+        let lower_limit : Double = rangeValueDict[name]![0]
+        let upper_limit : Double = rangeValueDict[name]![1]
+        graphVC?.lower_limit = lower_limit;
+        graphVC?.upper_limit = upper_limit;
         //self.present(graphVC!, animated: true, completion: nil)
         self.navigationController?.pushViewController(graphVC!, animated: true)
         

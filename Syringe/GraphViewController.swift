@@ -17,6 +17,19 @@ struct GraphValue {
 
 class GraphViewController: UIViewController{
     
+    let labelDict = [
+        "HGB": "Haemoglobin",
+        "RBC": "Red Blood Cells",
+        "WBC": "White Blood Cells",
+        "PLT": "Platelets",
+        "NEU": "Neutrophils",
+        "BAS": "Basophils",
+        "LYM": "Lymphocytes",
+        "MON": "Monocyte"
+    ]
+    
+    var upper_limit: Double = 0;
+    var lower_limit: Double = 0;
     
     let defaults = UserDefaults.standard;
     var ylabel:String = "";
@@ -24,6 +37,7 @@ class GraphViewController: UIViewController{
     var graphData:[GraphValue]=[];
     
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var dataLabelDescription: UILabel!
     
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -43,16 +57,38 @@ class GraphViewController: UIViewController{
     
     func setChartValues(){
         var values :[ChartDataEntry] = []
+        var lower_line :[ChartDataEntry] = []
+        var upper_line :[ChartDataEntry] = []
         
         var cnt:Double = 0;
+        print(lower_limit)
+        print(upper_limit)
         
         for item in graphData{
-            values.append(ChartDataEntry(x:cnt,y:item.yvalue));
+            values.append(ChartDataEntry(x:cnt, y:item.yvalue));
+            upper_line.append(ChartDataEntry(x:cnt, y:upper_limit));
+            lower_line.append(ChartDataEntry(x:cnt, y:lower_limit));
             cnt+=1;
         }
         
         let set = LineChartDataSet(entries:values,label: self.ylabel);
         let data = LineChartData(dataSet: set);
+        
+        let upper_set = LineChartDataSet(entries: upper_line, label: "upper_limit")
+        let lower_set = LineChartDataSet(entries: lower_line, label: "lower_limit")
+        
+        data.addDataSet(upper_set)
+        data.addDataSet(lower_set)
+        
+        lower_set.circleRadius = 0
+        lower_set.circleHoleRadius = 0
+        lower_set.lineDashPhase = 0
+        lower_set.colors = [NSUIColor(red: 0/255.0, green: 100/255.0, blue: 200/255.0, alpha: 3.0)]
+        
+        upper_set.circleRadius = 0
+        upper_set.circleHoleRadius = 0
+        upper_set.colors = [NSUIColor(red: 0/255.0, green: 100/255.0, blue: 200/255.0, alpha: 3.0)]
+        
         
         set.circleRadius = 5;
         set.circleColors = [NSUIColor(red: 255/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)]
@@ -88,22 +124,22 @@ class GraphViewController: UIViewController{
         self.lineChartView.rightAxis.gridColor = NSUIColor.clear
         self.lineChartView.highlightPerTapEnabled = true
         self.lineChartView.rightAxis.enabled = false;
-        self.lineChartView.rightAxis.enabled = false;
+        self.lineChartView.leftAxis.enabled = false;
         self.lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dates)
         self.lineChartView.xAxis.granularity = 1
-        self.lineChartView.leftAxis.drawZeroLineEnabled = false
-        self.lineChartView.leftAxis.zeroLineWidth = 0
-        self.lineChartView.rightAxis.zeroLineWidth = 0
-        self.lineChartView.leftAxis.drawTopYLabelEntryEnabled = false
-        self.lineChartView.rightAxis.drawTopYLabelEntryEnabled = false
-        self.lineChartView.leftAxis.drawAxisLineEnabled = false;
-        self.lineChartView.rightAxis.drawAxisLineEnabled = false;
-        self.lineChartView.rightAxis.removeAllLimitLines()
-        self.lineChartView.leftAxis.removeAllLimitLines()
+
+        
+        let ll = ChartLimitLine(limit: 4.0)
+        let ul = ChartLimitLine(limit: 7.0)
+        
+        self.lineChartView.rightAxis.addLimitLine(ll)
+        self.lineChartView.rightAxis.addLimitLine(ul)
+        print(self.lineChartView.rightAxis.isDrawLimitLinesBehindDataEnabled)
+        
         self.lineChartView.legend.enabled = false
         self.lineChartView.leftAxis.gridColor = UIColor(red:220/255, green:220/255,blue:220/255,alpha:1)
         self.lineChartView.translatesAutoresizingMaskIntoConstraints = false
-        self.lineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.4)
+        self.lineChartView.animate(yAxisDuration: 0.3)
 
     }
     
@@ -134,6 +170,7 @@ class GraphViewController: UIViewController{
             self.sortByDate();
             self.setChartValues();
             self.dataLabel.text = self.ylabel
+            self.dataLabelDescription.text = self.labelDict[self.ylabel]
         })
     }
 
