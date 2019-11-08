@@ -13,15 +13,18 @@ class ProfileViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     @IBOutlet weak var patientName: UILabel!
+    @IBOutlet weak var bloodGroupLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var mobileLabel: UILabel!
+    @IBOutlet weak var dobLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("PATIENT TECH VIEW CONTROLLER: " + defaults.string(forKey: "userId")!)
-        print(defaults.string(forKey: "blood_group")!);
+        bloodGroupLabel.text = defaults.string(forKey: "blood_group");
         patientName.text = defaults.string(forKey: "full_name");
-        print(defaults.string(forKey: "email") as Any);
-        print(defaults.integer(forKey: "mobile"));
-        print(defaults.string(forKey: "date_of_birth") as Any);
-        // Do any additional setup after loading the view.
+        emailLabel.text = defaults.string(forKey: "email");
+        mobileLabel.text = String(defaults.integer(forKey: "mobile"));
+        dobLabel.text = defaults.string(forKey: "date_of_birth");
     }
     
 
