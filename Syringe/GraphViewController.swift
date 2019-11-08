@@ -17,6 +17,8 @@ struct GraphValue {
 
 class GraphViewController: UIViewController{
     
+    //var curr_value:GraphValue=Null;
+    
     let labelDict = [
         "HGB": "Haemoglobin",
         "RBC": "Red Blood Cells",
@@ -28,9 +30,12 @@ class GraphViewController: UIViewController{
         "MON": "Monocyte"
     ]
     
+    @IBOutlet weak var analyticsLabel: UILabel!
     var upper_limit: Double = 0;
     var lower_limit: Double = 0;
     
+    var reportDate:String="";
+    let Rval:Double=0;
     let defaults = UserDefaults.standard;
     var ylabel:String = "";
     var xlabel:String = "date";
@@ -56,6 +61,24 @@ class GraphViewController: UIViewController{
     }
     
     func setChartValues(){
+        
+        var cnt1:Int = 0;
+        var ind:Int = -1;
+        
+        for i in self.graphData{
+            
+            if i.xvalue==self.reportDate{
+                ind = cnt1;
+            }
+            cnt1+=1
+        }
+        
+        print(ind)
+        print(cnt1)
+        
+        
+        
+        
         var values :[ChartDataEntry] = []
         var lower_line :[ChartDataEntry] = []
         var upper_line :[ChartDataEntry] = []
@@ -80,6 +103,8 @@ class GraphViewController: UIViewController{
         data.addDataSet(upper_set)
         data.addDataSet(lower_set)
         
+        
+        
         lower_set.circleRadius = 0
         lower_set.circleHoleRadius = 0
         lower_set.lineDashPhase = 0
@@ -90,6 +115,8 @@ class GraphViewController: UIViewController{
         upper_set.colors = [NSUIColor(red: 0/255.0, green: 100/255.0, blue: 200/255.0, alpha: 3.0)]
         
         
+        set.highlightColor = NSUIColor.black
+        set.highlightLineDashLengths = [15.0, 5.0]
         set.circleRadius = 5;
         set.circleColors = [NSUIColor(red: 255/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)]
         set.circleHoleRadius = 0
@@ -140,6 +167,9 @@ class GraphViewController: UIViewController{
         self.lineChartView.leftAxis.gridColor = UIColor(red:220/255, green:220/255,blue:220/255,alpha:1)
         self.lineChartView.translatesAutoresizingMaskIntoConstraints = false
         self.lineChartView.animate(yAxisDuration: 0.3)
+        self.lineChartView.highlightValue(x:Double(ind),y:graphData[ind].yvalue,dataSetIndex: 0, dataIndex: 0)
+
+        
 
     }
     

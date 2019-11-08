@@ -67,6 +67,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(dataName[indexPath.row])
+        print(self.reportID)
         let graphVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "graphViewController") as? GraphViewController
         graphVC?.ylabel = dataName[indexPath.row]
         let name = self.dataName[indexPath.row];
@@ -74,6 +75,7 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let upper_limit : Double = rangeValueDict[name]![1]
         graphVC?.lower_limit = lower_limit;
         graphVC?.upper_limit = upper_limit;
+        graphVC?.reportDate = self.reportDate;
         //self.present(graphVC!, animated: true, completion: nil)
         self.navigationController?.pushViewController(graphVC!, animated: true)
         
