@@ -60,6 +60,49 @@ class GraphViewController: UIViewController{
          print(ready)
     }
     
+    func inLimit(tt: Double) -> Bool {
+        if tt>lower_limit && tt<upper_limit{
+            return true
+        }
+        return false
+    }
+    
+    func analytics(){
+        var rr:Array<Double> = []
+        
+        for i in self.graphData{
+            rr.append(i.yvalue)
+        }
+        
+        if inLimit(tt: rr[0]) && inLimit(tt:rr[1]) && inLimit(tt:rr[1]) {
+            if rr[0]<rr[1] && rr[1]<rr[2] {
+                analyticsLabel.text = "All the values for your \(ylabel) are inside safe range.\nThe value for \(ylabel) has increased over the last few reports so consider trying to bring it under control ";
+                
+            }
+            else if rr[0]>rr[1] && rr[1]>rr[2]{
+                analyticsLabel.text = "All the values for your \(ylabel) are inside safe range.\nThe value for \(ylabel) has been fluctuation.\nConsider sticking to your dietary plan ";
+            }
+            else if rr[0]>rr[1] && rr[1]<rr[2] {
+                analyticsLabel.text = "All the values for your \(ylabel) are inside safe range.\nThe value for \(ylabel) for the second report shows a fluctuation over the the first and third indicating improper medication intake.\n";
+                
+                
+            }
+            else{
+                analyticsLabel.text = "All the values for your \(ylabel) are inside safe range.\nThe value for \(ylabel) for the second report shows a rise over the the first and third indicating improper quantity diet and excersive intake.\n";
+            }
+            
+        }
+        else if !inLimit(tt: rr[0]) && !inLimit(tt:rr[1]) && !inLimit(tt:rr[1]){
+            analyticsLabel.text = "Carefully all last 3 of your record are out of range please consider visiting a doctor";
+            analyticsLabel.isHighlighted = true
+        }
+        else{
+            analyticsLabel.text = "Some of the values for your \(ylabel) were out of safe range.Remember to get your regular checkup \n";
+        }
+        
+    }
+    
+    
     func setChartValues(){
         
         var cnt1:Int = 0;
@@ -73,11 +116,7 @@ class GraphViewController: UIViewController{
             cnt1+=1
         }
         
-        print(ind)
-        print(cnt1)
-        
-        
-        
+        analytics();
         
         var values :[ChartDataEntry] = []
         var lower_line :[ChartDataEntry] = []
