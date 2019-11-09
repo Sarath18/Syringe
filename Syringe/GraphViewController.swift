@@ -15,6 +15,29 @@ struct GraphValue {
     var xvalue:String;
 }
 
+extension UIFont {
+    var bold: UIFont {
+        return with(traits: .traitBold)
+    } // bold
+    
+    var italic: UIFont {
+        return with(traits: .traitItalic)
+    } // italic
+    
+    var boldItalic: UIFont {
+        return with(traits: [.traitBold, .traitItalic])
+    } // boldItalic
+    
+    
+    func with(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        guard let descriptor = self.fontDescriptor.withSymbolicTraits(traits) else {
+            return self
+        } // guard
+        
+        return UIFont(descriptor: descriptor, size: 0)
+    } // with(traits:)
+} // extension
+
 class GraphViewController: UIViewController{
     
     //var curr_value:GraphValue=Null;
@@ -93,8 +116,9 @@ class GraphViewController: UIViewController{
             
         }
         else if !inLimit(tt: rr[0]) && !inLimit(tt:rr[1]) && !inLimit(tt:rr[1]){
-            analyticsLabel.text = "Careful. Your previous records are out of range please consider visiting a doctor";
-            analyticsLabel.isHighlighted = true
+            analyticsLabel.text = "Careful. Your previous records of \(ylabel) are out of range please consider visiting a doctor";
+            analyticsLabel.font = UIFont.boldSystemFont(ofSize: 19)
+            analyticsLabel.font = analyticsLabel.font.with(traits: [.traitBold, .traitItalic])
         }
         else{
             analyticsLabel.text = "Some of the values for your \(ylabel) were out of safe range. \nRemember to get your regular checkup.";

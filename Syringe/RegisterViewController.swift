@@ -9,7 +9,24 @@
 import UIKit
 import Firebase
 
+
+extension Date {
+    
+    func isEqualTo(_ date: Date) -> Bool {
+        return self == date
+    }
+    
+    func isGreaterThan(_ date: Date) -> Bool {
+        return self > date
+    }
+    
+    func isSmallerThan(_ date: Date) -> Bool {
+        return self < date
+    }
+}
+
 class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    var currentDate : Date = Date.init();
     // Number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
@@ -41,13 +58,16 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func updateUserDetails() {
+    func updateUserDetails() -> Bool {
+        if(datePicker.date.isGreaterThan(currentDate)) {
+            return false;
+        }
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        guard let name = nameTextField.text else { return };
-        guard let email = emailTextField.text else { return };
+        guard let name = nameTextField.text else { return false};
+        guard let email = emailTextField.text else { return false};
         let blood_group = bloodGroupPickerData[bloodGroupPicker.selectedRow(inComponent: 0)]
-        guard let mobile = mobileNumberTextField.text else { return };
+        guard let mobile = mobileNumberTextField.text else { return false};
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -56,6 +76,7 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let userID : String = (Auth.auth().currentUser?.uid)!
         
         ref.child("users").child(userID).setValue(["email": email, "full_name": name, "date_of_birth": dob, "blood_group": blood_group, "mobile": mobile]);
+        return  true;
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -101,7 +122,10 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     errorAlert.message = "Check you details and try again."
                     self.present(errorAlert, animated: true, completion: nil)
                 } else {
-                    self.updateUserDetails();
+                    if(!self.updateUserDetails()) {
+                        errorAlert.message = "Incorrent Date of Birth Entered"
+                        self.present(errorAlert, animated: true, completion: nil)
+                    }
                     self.present(successAlert, animated: true, completion: nil)
                 }
             }
@@ -113,9 +137,9 @@ class RegisterViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false;
         self.navigationController?.navigationBar.prefersLargeTitles = true;
-        
+        currentDate = datePicker.date;
         // Adding custom border to text fields
         passwordTextField.setBorder()
         confirmPasswordTextField.setBorder()
